@@ -1,1 +1,825 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alzamiatuz Zohra Educational Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-dark: #1a5c2a;
+      --green-mid: #217a38;
+      --green-light: #2ea84f;
+      --green-pale: #e8f5ec;
+      --white: #ffffff;
+      --off-white: #f7faf8;
+      --text-dark: #1a2e1e;
+      --text-mid: #3a5a42;
+      --gold: #c8a83a;
+      --shadow: 0 8px 32px rgba(26,92,42,0.13);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+    }
+
+    
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 999;
+      background: rgba(26,92,42,0.97);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 66px;
+      box-shadow: 0 2px 18px rgba(26,92,42,0.25);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 0 3px rgba(200,168,58,0.3);
+      flex-shrink: 0;
+    }
+
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+    }
+
+    .nav-links {
+      display: flex; gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: all 0.25s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--gold);
+      color: var(--green-dark);
+    }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { width: 26px; height: 2px; background: white; border-radius: 2px; transition: 0.3s; }
+
+    
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 55%, var(--green-light) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding-top: 66px;
+    }
+
+    
+    #home::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 2px solid rgba(255,255,255,0.07);
+    }
+    #home::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: rgba(200,168,58,0.07);
+      border: 2px solid rgba(200,168,58,0.12);
+    }
+
+    .hero-inner {
+      text-align: center;
+      padding: 60px 24px;
+      position: relative; z-index: 2;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(36px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,168,58,0.18);
+      border: 1px solid rgba(200,168,58,0.55);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 30px;
+      margin-bottom: 22px;
+    }
+
+    .hero-avatar {
+      width: 110px; height: 110px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 58px;
+      border: 3px solid rgba(200,168,58,0.5);
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.05);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 6vw, 3.6rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-manager {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+    }
+    .hero-manager strong { color: var(--gold); }
+
+    .hero-btns {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 4px 18px rgba(200,168,58,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,168,58,0.45); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    
+    .hero-stats {
+      display: flex; gap: 0; justify-content: center;
+      margin-top: 52px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+      max-width: 560px; margin-left: auto; margin-right: auto;
+      margin-top: 52px;
+    }
+
+    .hero-stat {
+      flex: 1;
+      padding: 20px 14px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-stat .lbl {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    
+    .scroll-arrow {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      animation: bounce 1.8s infinite;
+      color: rgba(255,255,255,0.45); font-size: 1.5rem;
+      z-index: 2;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    
+    section { padding: 88px 5%; }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-mid);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-title span { color: var(--green-light); }
+
+    .section-divider {
+      width: 52px; height: 4px;
+      background: linear-gradient(to right, var(--gold), var(--green-light));
+      border-radius: 4px;
+      margin: 0 auto 32px;
+    }
+
+    
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      max-width: 1080px; margin: 0 auto;
+    }
+
+    .about-text { text-align: left; }
+
+    .about-text p {
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+    }
+
+    .about-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    .about-card {
+      background: var(--green-pale);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      border: 1px solid rgba(46,168,79,0.15);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .about-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+    .about-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .about-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .about-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
+
+    
+    .subjects-section { background: var(--green-pale); text-align: center; }
+
+    .subjects-grid {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center;
+      max-width: 760px; margin: 0 auto;
+    }
+
+    .subject-chip {
+      background: var(--white);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 2px solid rgba(46,168,79,0.25);
+      box-shadow: 0 2px 8px rgba(26,92,42,0.07);
+      transition: all 0.22s;
+    }
+    .subject-chip:hover {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    
+    #admission { background: var(--white); }
+
+    .admission-wrap {
+      max-width: 580px; margin: 0 auto;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1.5px solid rgba(46,168,79,0.2);
+      border-radius: 24px;
+      padding: 44px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid rgba(46,168,79,0.25);
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background: var(--off-white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(33,122,56,0.1);
+      background: white;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 18px rgba(26,92,42,0.28);
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,92,42,0.35); }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 18px;
+      background: var(--green-pale);
+      border: 1.5px solid var(--green-light);
+      border-radius: 12px;
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-top: 16px;
+      font-size: 0.95rem;
+    }
+    .success-msg.show { display: block; animation: fadeUp 0.4s ease; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--green-pale); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+      max-width: 900px; margin: 0 auto;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(46,168,79,0.12);
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--green-pale);
+    }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contact-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--green-dark);
+    }
+
+    .contact-item p {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .contact-item strong { color: var(--green-dark); font-size: 0.85rem; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.07em; }
+
+    .btn-call {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+      color: white;
+      padding: 13px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-top: 10px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 16px rgba(26,92,42,0.28);
+    }
+    .btn-call:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,92,42,0.35); }
+
+    
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      border-radius: 16px;
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 20px;
+      font-size: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 5%;
+    }
+
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    footer p { font-size: 0.82rem; margin-bottom: 5px; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer .dev { margin-top: 10px; font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+    footer .dev span { color: var(--gold); font-weight: 700; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; width: 100%; background: var(--green-dark); padding: 16px 0 24px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 28px; border-radius: 0; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 30px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="logo-icon">🎓</div>
+    <span>Alzamiatuz Zohra<br>Educational Society</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active" onclick="setActive(this)">Home</a></li>
+    <li><a href="#about" onclick="setActive(this)">About</a></li>
+    <li><a href="#admission" onclick="setActive(this)">Admission</a></li>
+    <li><a href="#contact" onclick="setActive(this)">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">✦ Established for Excellence ✦</div>
+    <div class="hero-avatar">🎓</div>
+    <h1 class="hero-title">Alzamiatuz <span>Zohra</span><br>Educational Society</h1>
+    <p class="hero-sub">Quality Education from Nursery to 5th Class</p>
+    <p class="hero-manager"><strong>Manager:</strong> Dr. Mohd Shameem</p>
+    <div class="hero-btns">
+      <a href="#admission" class="btn-primary">Apply for Admission</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">7+</div>
+        <div class="lbl">Subjects</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">N–5</div>
+        <div class="lbl">Classes</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">100%</div>
+        <div class="lbl">Dedication</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">2008</div>
+        <div class="lbl">Est. Year</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-arrow">▾</div>
+</section>
+
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag">About Our School</div>
+      <h2 class="section-title">Nurturing Minds,<br><span>Building Futures</span></h2>
+      <div class="section-divider" style="margin:0 0 24px;"></div>
+      <p>Alzamiatuz Zohra Educational Society provides quality education from Nursery to 5th standard. We focus on academic excellence along with moral and Islamic values.</p>
+      <p>Our dedicated faculty ensures every child receives personalized attention in a nurturing, values-driven environment that prepares them for life's challenges.</p>
+      <a href="#admission" class="btn-primary" style="display:inline-block; margin-top:10px;">Enroll Your Child</a>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="icon">📚</div>
+        <h4>Academic Excellence</h4>
+        <p>Strong foundation in core subjects with comprehensive curriculum.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🕌</div>
+        <h4>Islamic Values</h4>
+        <p>Instilling moral and Islamic principles alongside modern education.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">👨‍🏫</div>
+        <h4>Expert Teachers</h4>
+        <p>Experienced and caring educators dedicated to student growth.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🌱</div>
+        <h4>Holistic Growth</h4>
+        <p>Developing the whole child — intellectually, morally, and socially.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="subjects-section">
+  <div class="section-tag">Curriculum</div>
+  <h2 class="section-title">Subjects We <span>Teach</span></h2>
+  <div class="section-divider"></div>
+  <div class="subjects-grid">
+    <div class="subject-chip">English</div>
+    <div class="subject-chip">Hindi</div>
+    <div class="subject-chip">Mathematics</div>
+    <div class="subject-chip">Science</div>
+    <div class="subject-chip">Social Studies</div>
+    <div class="subject-chip">Urdu</div>
+    <div class="subject-chip">Arabic</div>
+    <div class="subject-chip">Islamic Studies</div>
+  </div>
+</section>
+
+
+<section id="admission">
+  <div style="text-align:center; margin-bottom:40px;">
+    <div class="section-tag">Enroll Now</div>
+    <h2 class="section-title">Online <span>Admission Form</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="admission-wrap">
+    <div class="form-card">
+      <div class="form-group">
+        <label>Student Name</label>
+        <input type="text" id="studentName" placeholder="Enter student's full name"/>
+      </div>
+      <div class="form-group">
+        <label>Father's Name</label>
+        <input type="text" id="fatherName" placeholder="Enter father's full name"/>
+      </div>
+      <div class="form-group">
+        <label>Class Applying For</label>
+        <select id="classApplying">
+          <option value="">— Select Class —</option>
+          <option>Nursery</option>
+          <option>KG</option>
+          <option>Class 1</option>
+          <option>Class 2</option>
+          <option>Class 3</option>
+          <option>Class 4</option>
+          <option>Class 5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Parent Contact Number</label>
+        <input type="tel" id="contactNo" placeholder="Enter 10-digit mobile number"/>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea id="address" placeholder="Enter complete residential address"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Submit Admission ✦</button>
+      <div class="success-msg" id="successMsg">
+        ✅ Your admission request has been submitted successfully!<br>
+        We will contact you shortly on the provided number.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div style="text-align:center; margin-bottom:40px;">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Contact <span>Us</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>📞 Phone Numbers</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <p><strong>Primary</strong>8303654984</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <p><strong>Secondary</strong>9792294599</p>
+        </div>
+      </div>
+      <a href="tel:8303654984" class="btn-call">📞 Call Now</a>
+    </div>
+    <div class="contact-card">
+      <h3>📍 Our Address</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📌</div>
+        <div>
+          <p>
+            Mahmoodpur Allauddin Pur,<br>
+            Sadullah Nagar,<br>
+            District Balrampur,<br>
+            Uttar Pradesh – 271307
+          </p>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        🗺️
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-logo">🎓 Alzamiatuz Zohra Educational Society</div>
+  <p>Quality Education from Nursery to 5th Class</p>
+  <p>Manager: <strong style="color:var(--gold)">Dr. Mohd Shameem</strong></p>
+  <p style="margin-top:8px; font-size:0.8rem;">Mahmoodpur Allauddin Pur, Sadullah Nagar, Balrampur, UP – 271307</p>
+  <p style="margin-top:4px; font-size:0.8rem;">📞 8303654984 &nbsp;|&nbsp; 9792294599</p>
+  <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px; font-size:0.78rem; color:rgba(255,255,255,0.45);">
+    © 2026 Alzamiatuz Zohra Educational Society. All Rights Reserved.
+  </div>
+  <div class="dev">Developed by <span>SyedGufran Kazmi</span></div>
+</footer>
+
+<script>
+  
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  
+  function setActive(el) {
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  
+  window.addEventListener('scroll', () => {
+    const sections = ['home','about','admission','contact'];
+    let current = 'home';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 80) current = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  
+  function submitForm() {
+    const name = document.getElementById('studentName').value.trim();
+    const father = document.getElementById('fatherName').value.trim();
+    const cls = document.getElementById('classApplying').value;
+    const contact = document.getElementById('contactNo').value.trim();
+    const addr = document.getElementById('address').value.trim();
+
+    if (!name || !father || !cls || !contact || !addr) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+    if (!/^\d{10}$/.test(contact)) {
+      alert('Please enter a valid 10-digit contact number.');
+      return;
+    }
+
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('studentName').value = '';
+    document.getElementById('fatherName').value = '';
+    document.getElementById('classApplying').value = '';
+    document.getElementById('contactNo').value = '';
+    document.getElementById('address').value = '';
+
+    setTimeout(() => document.getElementById('successMsg').classList.remove('show'), 5000);
+  }
+</script>
+</body>
+</html>
